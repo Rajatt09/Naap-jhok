@@ -1,0 +1,36 @@
+.tailor-map-container {
+  margin-bottom: 2rem;
+}
+
+.map-controls {
+  margin-bottom: 1rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.radius-select {
+  padding: 0.5rem;
+  border: 1px solid var(--color-gray-300);
+  border-radius: var(--border-radius);
+  font-size: 0.875rem;
+}
+
+.tailor-info-window {
+  padding: 0.5rem;
+}
+
+.tailor-info-window h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+}
+
+.tailor-info-window p {
+  margin: 0 0 0.5rem;
+  font-size: 0.875rem;
+  color: var(--color-gray-600);
+}
+
+.tailor-info-window .btn {
+  margin-top: 0.5rem;
+}

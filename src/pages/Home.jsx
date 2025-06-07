@@ -1,0 +1,219 @@
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import TailorList from "../components/tailors/TailorList";
+import { getNearbyTailors, getAllTailors } from "../api/tailors";
+import "./Home.css";
+
+const Home = () => {
+  const { isAuthenticated, currentUser } = useAuth();
+  const [nearbyTailors, setNearbyTailors] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [visibleCount, setVisibleCount] = useState(6);
+  const [allTailors, setAllTailors] = useState([]);
+  const [displayedTailors, setDisplayedTailors] = useState([]);
+
+  useEffect(() => {
+    const fetchTailors = async () => {
+      try {
+        setIsLoading(true);
+        // In a real app, we would get the user's current location
+        // For demo, we use a fixed location
+        // const lat = 12.9716;
+        // const lng = 77.5946;
+        // const tailors = await getNearbyTailors(lat, lng)
+        // setNearbyTailors(tailors)
+        const tailors = await getAllTailors();
+        // setNearbyTailors(tailors);
+        setAllTailors(tailors);
+        setDisplayedTailors(tailors.slice(0, visibleCount));
+      } catch (error) {
+        console.error("Error fetching tailors:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchTailors();
+  }, []);
+
+  // const filteredTailors = nearbyTailors.filter(
+  //   (tailor) =>
+  //     tailor.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+  //     tailor.servicesOffered.some((service) =>
+  //       service.toLowerCase().includes(searchQuery.toLowerCase())
+  //     )
+  // );
+
+  // Filter functionality
+  const filteredTailors = displayedTailors.filter(
+    (tailor) =>
+      tailor.userId?.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      tailor.shopAddress?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      tailor.servicesOffered.some((service) =>
+        service.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+  );
+
+  const handleViewMore = () => {
+    setVisibleCount((prev) => prev + 6); // Load 6 more tailors each click
+  };
+
+  return (
+    <div className="home-page">
+      <section className="hero-section">
+        <div className="hero-content">
+          <h1 className="slide-up">Find the Perfect Tailor Near You</h1>
+          <p className="slide-up">
+            Quality stitching, custom fits, and convenient delivery options
+          </p>
+
+          {isAuthenticated ? (
+            <Link to="/dashboard" className="btn btn-primary slide-up">
+              Go to Dashboard
+            </Link>
+          ) : (
+            <div className="hero-buttons slide-up">
+              <Link to="/login" className="btn btn-primary">
+                Get Started
+              </Link>
+              <Link to="/signup" className="btn btn-outline">
+                Join as Tailor
+              </Link>
+            </div>
+          )}
+        </div>
+      </section>
+
+      <section className="features-section">
+        <div className="container">
+          <h2>How It Works</h2>
+
+          <div className="features-grid">
+            <div className="feature-card">
+              <div className="feature-icon">🔍</div>
+              <h3>Find Tailors</h3>
+              <p>Discover skilled tailors within 4km of your location</p>
+            </div>
+
+            <div className="feature-card">
+              <div className="feature-icon">✂️</div>
+              <h3>Place Order</h3>
+              <p>Share your measurements and clothing requirements</p>
+            </div>
+
+            <div className="feature-card">
+              <div className="feature-icon">👕</div>
+              <h3>Get Stitched</h3>
+              <p>Tailors work on your order with quality craftsmanship</p>
+            </div>
+
+            <div className="feature-card">
+              <div className="feature-icon">🚚</div>
+              <h3>Delivery Options</h3>
+              <p>Choose between pickup or home delivery</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="nearby-tailors-section">
+        <div className="container">
+          <div className="section-header">
+            <h2>Tailors Near You</h2>
+            <div className="search-container">
+              <input
+                type="text"
+                placeholder="Search by name or service..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="search-input"
+              />
+            </div>
+          </div>
+
+          <TailorList tailors={filteredTailors} isLoading={isLoading} />
+
+          {visibleCount < allTailors.length && (
+            <div className="view-all-container">
+              <Link onClick={handleViewMore} className="btn btn-outline">
+                View More
+              </Link>
+            </div>
+          )}
+
+          {/* <TailorList tailors={filteredTailors} isLoading={isLoading} /> */}
+          {/* <TailorList tailors={nearbyTailors} isLoading={isLoading} />
+
+          <div className="view-all-container">
+            <Link to="/find-tailors" className="btn btn-outline">
+              View All Tailors
+            </Link>
+          </div> */}
+        </div>
+      </section>
+
+      <section className="testimonials-section">
+        <div className="container">
+          <h2>What Our Users Say</h2>
+
+          <div className="testimonials-grid">
+            <div className="testimonial-card">
+              <div className="testimonial-rating">★★★★★</div>
+              <p>
+                "Found an amazing tailor who made the perfect wedding outfit for
+                me. The process was so smooth!"
+              </p>
+              <div className="testimonial-author">- Priya S.</div>
+            </div>
+
+            <div className="testimonial-card">
+              <div className="testimonial-rating">★★★★★</div>
+              <p>
+                "As a tailor, this platform has helped me reach more customers.
+                My business has grown significantly!"
+              </p>
+              <div className="testimonial-author">
+                - Raj M., Professional Tailor
+              </div>
+            </div>
+
+            <div className="testimonial-card">
+              <div className="testimonial-rating">★★★★☆</div>
+              <p>
+                "Great service, love the order tracking. Being able to choose
+                delivery options is very convenient."
+              </p>
+              <div className="testimonial-author">- Aisha K.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="cta-section">
+        <div className="container">
+          <h2>Ready to Get Started?</h2>
+          <p>Join thousands of users finding the perfect fit</p>
+
+          {isAuthenticated ? (
+            <Link to="/dashboard" className="btn btn-primary">
+              Go to Dashboard
+            </Link>
+          ) : (
+            <div className="cta-buttons">
+              <Link to="/signup" className="btn btn-primary">
+                Sign Up Now
+              </Link>
+              <Link to="/login" className="btn btn-outline">
+                Log In
+              </Link>
+            </div>
+          )}
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default Home;

@@ -1,0 +1,107 @@
+.tailor-list {
+  margin-top: 2rem;
+}
+
+.tailor-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.tailor-card-header {
+  display: flex;
+  padding: 1.5rem 1.5rem 1rem;
+  gap: 1rem;
+}
+
+.tailor-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: var(--border-radius-full);
+  object-fit: cover;
+  border: 3px solid white;
+  box-shadow: var(--shadow-sm);
+}
+
+.tailor-header-content {
+  flex: 1;
+}
+
+.tailor-name {
+  font-size: 1.25rem;
+  color: var(--color-gray-900);
+  margin-bottom: 0.25rem;
+}
+
+.tailor-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.stars {
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+.review-count {
+  color: var(--color-gray-500);
+  font-size: 0.875rem;
+}
+
+.tailor-price-range {
+  font-size: 0.875rem;
+  color: var(--color-gray-600);
+}
+
+.tailor-card-body {
+  padding: 0 1.5rem 1.5rem;
+  flex: 1;
+}
+
+.tailor-services {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.tailor-service-tag {
+  background-color: var(--color-gray-100);
+  color: var(--color-gray-800);
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--border-radius-full);
+}
+
+.tailor-service-tag.more {
+  background-color: var(--color-gray-200);
+}
+
+.tailor-location {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-gray-600);
+  font-size: 0.875rem;
+}
+
+.tailor-card-footer {
+  display: flex;
+  padding: 1rem 1.5rem;
+  gap: 0.5rem;
+  border-top: 1px solid var(--color-gray-200);
+  background-color: var(--color-gray-50);
+  border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg);
+}
+
+.tailor-card-footer .btn {
+  flex: 1;
+}
+
+.no-tailors {
+  text-align: center;
+  padding: 3rem 0;
+  color: var(--color-gray-600);
+}

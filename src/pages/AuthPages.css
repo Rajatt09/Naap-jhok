@@ -1,0 +1,16 @@
+.auth-page {
+  min-height: calc(100vh - 64px);
+  display: flex;
+  align-items: center;
+  padding-top: 80px; /* Account for fixed header */
+}
+
+.auth-content {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .auth-page {
+    padding-top: 100px;
+  }
+}

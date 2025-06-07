@@ -1,0 +1,179 @@
+.tailor-profile-page {
+  padding: 1rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.back-link {
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.profile-header {
+  background-color: #fff;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  margin-bottom: 2rem;
+  overflow: hidden;
+}
+
+.profile-header-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+.tailor-profile-avatar img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid white;
+  box-shadow: var(--shadow-md);
+}
+
+.tailor-profile-info h1 {
+  margin: 0;
+  font-size: 1.75rem;
+  color: var(--color-gray-900);
+}
+
+.tailor-rating-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+}
+
+.stars {
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+.review-count {
+  color: var(--color-gray-500);
+}
+
+.tailor-price-range {
+  color: var(--color-gray-700);
+  font-weight: 500;
+}
+
+.shop-status {
+  font-weight: 600;
+}
+
+.shop-status.open {
+  color: var(--color-success);
+}
+
+.shop-status.closed {
+  color: var(--color-error);
+}
+
+.tailor-location,
+.tailor-contact {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-gray-600);
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.book-btn {
+  margin-top: 1rem;
+  font-weight: 600;
+}
+
+.profile-content {
+  display: grid;
+  gap: 2rem;
+}
+
+.tailor-services-section,
+.tailor-gallery-section,
+.tailor-availability-section {
+  background: #fff;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  padding-bottom: 1rem;
+}
+
+.tailor-services-section h2,
+.tailor-gallery-section h2,
+.tailor-availability-section h2 {
+  margin: 0;
+  padding: 1rem 1.5rem;
+  font-size: 1.25rem;
+  border-bottom: 1px solid var(--color-gray-200);
+  background-color: var(--color-gray-50);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0.75rem;
+  padding: 1rem;
+}
+
+.service-item {
+  background-color: var(--color-gray-100);
+  border-radius: var(--border-radius);
+  padding: 0.75rem;
+  font-weight: 500;
+  box-shadow: var(--shadow-xs);
+}
+
+.shop-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.75rem;
+  padding: 1rem;
+}
+
+.gallery-image img {
+  width: 100%;
+  border-radius: var(--border-radius);
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.gallery-image:hover img {
+  transform: scale(1.05);
+}
+
+.availability-table {
+  padding: 1rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.availability-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+  background: var(--color-gray-50);
+  border-radius: var(--border-radius);
+}
+
+.empty-text {
+  color: var(--color-gray-500);
+  padding: 1rem;
+  font-style: italic;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .profile-header-content {
+    flex-direction: row;
+    align-items: center;
+  }
+  .tailor-profile-avatar img {
+    width: 150px;
+    height: 150px;
+  }
+}
