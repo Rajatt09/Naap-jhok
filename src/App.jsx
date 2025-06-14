@@ -17,6 +17,9 @@ const TailorProfile = lazy(() => import("./pages/TailorProfile"));
 const OrderDetails = lazy(() => import("./pages/OrderDetails"));
 const OrderForm = lazy(() => import("./pages/OrderForm"));
 const Profile = lazy(() => import("./pages/Profile"));
+const Map = lazy(() => import("./pages/Map"));
+const TailorMap = lazy(() => import("./components/map/TailorMap"));
+// const MapPage = lazy(() => import("./components/map/TailorMap"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 function App() {
@@ -76,6 +79,15 @@ function App() {
                 </ProtectedRoute>
               }
             />
+            <Route
+              path="/set-location"
+              element={
+                <ProtectedRoute>
+                  <Map />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/tailors_in_range" element={<TailorMap />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>

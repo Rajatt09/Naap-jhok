@@ -40,6 +40,7 @@ const TailorProfile = () => {
   const {
     userId,
     shopAddress,
+    area,
     location,
     servicesOffered,
     rating,
@@ -79,7 +80,10 @@ const TailorProfile = () => {
               </span>
             </div>
             <div className="tailor-location">
-              <FaMapMarkerAlt /> <span>{shopAddress}</span>
+              <FaMapMarkerAlt />{" "}
+              <span>
+                {shopAddress} <br /> {area}
+              </span>
             </div>
             <div className="tailor-contact">
               <FaPhoneAlt /> <span>{userId?.phone || "N/A"}</span>

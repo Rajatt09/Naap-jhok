@@ -12,7 +12,7 @@ export const auth = async (req, res, next) => {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.userId = decoded.userId;
     req.userRole = decoded.role;
-    console.log("Decoded user:", decoded);
+    // console.log("Decoded user:", decoded);
     next();
   } catch (error) {
     res.status(401).json({ message: "Invalid token" });

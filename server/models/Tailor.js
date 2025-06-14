@@ -32,6 +32,9 @@ const tailorSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  area: {
+    type: String,
+  },
   location: {
     lat: Number,
     lng: Number,

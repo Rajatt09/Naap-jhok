@@ -1,0 +1,67 @@
+@import url("https://unpkg.com/leaflet/dist/leaflet.css");
+.map-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  max-width: 95%;
+  margin: 2rem auto;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.map-container {
+  height: 400px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.location-details {
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.location-details h4 {
+  margin: 0 0 0.25rem;
+  font-size: 1rem;
+  color: #333;
+}
+
+.coordinates {
+  display: flex;
+  flex-wrap: wrap;
+  /* gap: 1rem; */
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.area-name {
+  font-weight: 500;
+  color: #007bff;
+}
+
+.save-btn {
+  align-self: flex-start;
+  padding: 0.5rem 1rem;
+  border: none;
+  background: #007bff;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.save-btn:hover {
+  background: #0056b3;
+}
+
+.save-message {
+  color: #28a745;
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+  font-weight: 500;
+}

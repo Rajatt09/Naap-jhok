@@ -5,7 +5,8 @@
 .hero-section {
   height: 80vh;
   min-height: 500px;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.pexels.com/photos/4620617/pexels-photo-4620617.jpeg?auto=compress&cs=tinysrgb&w=1600');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("https://images.pexels.com/photos/4620617/pexels-photo-4620617.jpeg?auto=compress&cs=tinysrgb&w=1600");
   background-size: cover;
   background-position: center;
   display: flex;
@@ -15,6 +16,66 @@
   color: white;
   padding: 1rem;
   position: relative;
+}
+
+.search-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.search-divider {
+  text-align: center;
+  color: var(--color-gray-500);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.range-label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-gray-700);
+}
+
+.range-select {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--color-gray-300);
+  border-radius: var(--border-radius-full);
+  background-color: white;
+  font-size: 1rem;
+  transition: all 0.2s;
+}
+
+.range-select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+}
+
+@media (min-width: 640px) {
+  .search-container {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .search-divider {
+    margin: 0 1rem;
+  }
+
+  .range-label {
+    margin-right: 0.5rem;
+  }
+
+  .search-input {
+    width: 250px;
+  }
+
+  .range-select {
+    width: auto;
+  }
 }
 
 .hero-content {
@@ -130,6 +191,10 @@
 
 .view-all-container {
   margin-top: 2rem;
+  gap: 2;
+  display: flex;
+  gap: 10px;
+  justify-content: right;
   text-align: center;
 }
 
@@ -213,16 +278,16 @@
   .testimonials-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .search-container {
     margin-top: 0;
     width: auto;
   }
-  
+
   .search-input {
     width: 300px;
   }
-  
+
   .hero-content h1 {
     font-size: 3rem;
   }
@@ -232,12 +297,18 @@
   .features-grid {
     grid-template-columns: repeat(4, 1fr);
   }
-  
+
   .testimonials-grid {
     grid-template-columns: repeat(3, 1fr);
   }
-  
+
   .hero-content h1 {
     font-size: 3.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .view-all-container {
+    flex-direction: column;
   }
 }

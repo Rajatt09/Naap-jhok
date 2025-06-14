@@ -41,6 +41,25 @@ router.get("/nearby", async (req, res) => {
   }
 });
 
+router.get("/location", auth, isTailor, async (req, res) => {
+  try {
+    console.log("Fetching location for userId:", req.userId);
+    const tailor = await Tailor.findOne({ userId: req.userId }).select(
+      "location area"
+    );
+
+    if (!tailor) {
+      return res.status(404).json({ message: "Tailor not found" });
+    }
+
+    res.json(tailor);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Error fetching location", error: error.message });
+  }
+});
+
 router.get("/:id", async (req, res) => {
   try {
     const tailor = await Tailor.findById(req.params.id).populate(
@@ -62,9 +81,10 @@ router.get("/:id", async (req, res) => {
 
 router.put("/profile", auth, isTailor, async (req, res) => {
   try {
+    console.log("req is : ", req.body);
     const tailor = await Tailor.findOneAndUpdate(
       { userId: req.userId },
-      req.body,
+      req.body.location,
       { new: true }
     );
 

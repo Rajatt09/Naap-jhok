@@ -3,6 +3,7 @@ import { useAuth } from "../context/AuthContext";
 import { updateProfile } from "../api/auth";
 import { updateTailorProfile } from "../api/tailors";
 import TailorAvailability from "../components/tailors/TailorAvailability";
+import { useNavigate } from "react-router-dom";
 import "./Profile.css";
 
 const defaultAvailability = [
@@ -32,6 +33,7 @@ const Profile = () => {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const value =
@@ -271,13 +273,24 @@ const Profile = () => {
 
           {/* 🟡 Edit Profile button OUTSIDE the form to prevent accidental submit */}
           {!isEditing && (
-            <div className="edit-profile-btn">
+            <div
+              className="edit-profile-btn"
+              style={{ display: "flex", justifyContent: "space-between" }}
+            >
               <button
                 type="button"
                 className="btn btn-primary"
                 onClick={handleEditProfile}
               >
                 Edit Profile
+              </button>
+
+              <button
+                type="button"
+                className="btn btn-secondary"
+                onClick={() => navigate("/set-location")}
+              >
+                Set Shop Location
               </button>
             </div>
           )}

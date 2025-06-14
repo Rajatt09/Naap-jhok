@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import TailorList from "../components/tailors/TailorList";
 import { getNearbyTailors, getAllTailors } from "../api/tailors";
+import { getUserLocation } from "../api/locations";
 import "./Home.css";
 
 const Home = () => {
@@ -13,19 +14,51 @@ const Home = () => {
   const [visibleCount, setVisibleCount] = useState(6);
   const [allTailors, setAllTailors] = useState([]);
   const [displayedTailors, setDisplayedTailors] = useState([]);
+  const [searchRange, setSearchRange] = useState("");
+
+  // useEffect(() => {
+  //   const fetchTailors = async () => {
+  //     try {
+  //       setIsLoading(true);
+  //       // In a real app, we would get the user's current location
+  //       // For demo, we use a fixed location
+  //       // const lat = 12.9716;
+  //       // const lng = 77.5946;
+  //       // const tailors = await getNearbyTailors(lat, lng)
+  //       // setNearbyTailors(tailors)
+  //       const tailors = await getAllTailors();
+  //       // setNearbyTailors(tailors);
+  //       setAllTailors(tailors);
+  //       setDisplayedTailors(tailors.slice(0, visibleCount));
+  //     } catch (error) {
+  //       console.error("Error fetching tailors:", error);
+  //     } finally {
+  //       setIsLoading(false);
+  //     }
+  //   };
+
+  //   fetchTailors();
+  // }, []);
 
   useEffect(() => {
     const fetchTailors = async () => {
       try {
         setIsLoading(true);
-        // In a real app, we would get the user's current location
-        // For demo, we use a fixed location
-        // const lat = 12.9716;
-        // const lng = 77.5946;
-        // const tailors = await getNearbyTailors(lat, lng)
-        // setNearbyTailors(tailors)
-        const tailors = await getAllTailors();
-        // setNearbyTailors(tailors);
+        let tailors = [];
+
+        if (searchRange) {
+          // You can replace these with actual geolocation values if available
+          // const lat = 12.9716;
+          // const lng = 77.5946;
+          const { lat, lng } = await getUserLocation();
+          console.log("User Location (fetched):", lat, lng);
+          // tailors = await getNearbyTailors(lat, lng, searchRange);
+        } else {
+          tailors = await getAllTailors();
+        }
+
+        console.log("tailors are : ", tailors);
+
         setAllTailors(tailors);
         setDisplayedTailors(tailors.slice(0, visibleCount));
       } catch (error) {
@@ -36,15 +69,7 @@ const Home = () => {
     };
 
     fetchTailors();
-  }, []);
-
-  // const filteredTailors = nearbyTailors.filter(
-  //   (tailor) =>
-  //     tailor.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-  //     tailor.servicesOffered.some((service) =>
-  //       service.toLowerCase().includes(searchQuery.toLowerCase())
-  //     )
-  // );
+  }, [searchRange]);
 
   // Filter functionality
   const filteredTailors = displayedTailors.filter(
@@ -64,10 +89,21 @@ const Home = () => {
     <div className="home-page">
       <section className="hero-section">
         <div className="hero-content">
-          <h1 className="slide-up">Find the Perfect Tailor Near You</h1>
-          <p className="slide-up">
-            Quality stitching, custom fits, and convenient delivery options
-          </p>
+          {currentUser?.role != "tailor" ? (
+            <h1 className="slide-up">Find the Perfect Tailor Near You</h1>
+          ) : (
+            <h1 className="slide-up">Grow Your Tailoring Business</h1>
+          )}
+          {currentUser?.role != "tailor" ? (
+            <p className="slide-up">
+              Quality stitching, custom fits, and convenient delivery options
+            </p>
+          ) : (
+            <p className="slide-up">
+              Manage orders, connect with customers, and streamline your
+              workflow
+            </p>
+          )}
 
           {isAuthenticated ? (
             <Link to="/dashboard" className="btn btn-primary slide-up">
@@ -118,41 +154,59 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="nearby-tailors-section">
-        <div className="container">
-          <div className="section-header">
-            <h2>Tailors Near You</h2>
-            <div className="search-container">
-              <input
-                type="text"
-                placeholder="Search by name or service..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="search-input"
-              />
+      {currentUser?.role != "tailor" && (
+        <section className="nearby-tailors-section">
+          <div className="container">
+            <div className="section-header">
+              <h2>Tailors Near You</h2>
+
+              <div className="search-container">
+                {/* Search by name or service */}
+                <input
+                  type="text"
+                  placeholder="Search by name or service..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="search-input"
+                />
+
+                {/* Divider */}
+                <div className="search-divider">OR</div>
+
+                {/* Search nearby range */}
+                <label htmlFor="range-select" className="range-label">
+                  Search Nearby:
+                </label>
+                <select
+                  id="range-select"
+                  value={searchRange}
+                  onChange={(e) => setSearchRange(e.target.value)}
+                  className="range-select"
+                >
+                  <option value="">Select Range</option>
+                  <option value="2">2 km</option>
+                  <option value="4">4 km</option>
+                  <option value="8">8 km</option>
+                  <option value="10">10 km</option>
+                </select>
+              </div>
             </div>
-          </div>
 
-          <TailorList tailors={filteredTailors} isLoading={isLoading} />
+            <TailorList tailors={filteredTailors} isLoading={isLoading} />
 
-          {visibleCount < allTailors.length && (
             <div className="view-all-container">
-              <Link onClick={handleViewMore} className="btn btn-outline">
-                View More
+              {visibleCount < allTailors.length && (
+                <Link onClick={handleViewMore} className="btn btn-outline">
+                  View More
+                </Link>
+              )}
+              <Link to="/tailors_in_range" className="btn btn-outline">
+                View Tailors on map
               </Link>
             </div>
-          )}
-
-          {/* <TailorList tailors={filteredTailors} isLoading={isLoading} /> */}
-          {/* <TailorList tailors={nearbyTailors} isLoading={isLoading} />
-
-          <div className="view-all-container">
-            <Link to="/find-tailors" className="btn btn-outline">
-              View All Tailors
-            </Link>
-          </div> */}
-        </div>
-      </section>
+          </div>
+        </section>
+      )}
 
       <section className="testimonials-section">
         <div className="container">

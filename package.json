@@ -21,11 +21,14 @@
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",
     "jwt-decode": "^4.0.0",
+    "leaflet": "^1.9.4",
+    "leaflet-geosearch": "^4.2.0",
     "mongoose": "^8.1.1",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "react": "^19.0.0-rc.1",
+    "react-dom": "^19.0.0-rc.1",
     "react-hook-form": "^7.50.0",
     "react-icons": "^5.5.0",
+    "react-leaflet": "^5.0.0-rc.2",
     "react-router-dom": "^6.22.1"
   },
   "devDependencies": {
