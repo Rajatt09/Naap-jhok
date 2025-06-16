@@ -5,16 +5,17 @@
 }
 
 .order-item {
-  background-color: white;
+  background: linear-gradient(135deg, white 0%, var(--color-cream) 100%);
   border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-md);
   overflow: hidden;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(210, 105, 30, 0.1);
 }
 
 .order-item:hover {
   transform: translateY(-3px);
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 8px 25px rgba(210, 105, 30, 0.15);
 }
 
 .order-header {
@@ -22,8 +23,12 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 1.5rem;
-  background-color: var(--color-gray-50);
-  border-bottom: 1px solid var(--color-gray-200);
+  background: linear-gradient(
+    135deg,
+    var(--color-gray-50) 0%,
+    var(--color-cream) 100%
+  );
+  border-bottom: 1px solid rgba(210, 105, 30, 0.1);
 }
 
 .order-id {
@@ -40,6 +45,7 @@
 
 .order-value {
   font-weight: 600;
+  color: var(--color-primary);
 }
 
 .order-summary {
@@ -54,7 +60,7 @@
   display: flex;
   justify-content: space-between;
   padding: 0.5rem 0;
-  border-bottom: 1px solid var(--color-gray-100);
+  border-bottom: 1px solid rgba(210, 105, 30, 0.1);
 }
 
 .order-item-detail:last-child {
@@ -63,10 +69,12 @@
 
 .item-description {
   font-weight: 500;
+  color: var(--color-gray-800);
 }
 
 .item-price {
   font-weight: 600;
+  color: var(--color-primary);
 }
 
 .order-meta {
@@ -75,7 +83,7 @@
   gap: 0.75rem 1.5rem;
   margin-top: 1rem;
   padding-top: 1rem;
-  border-top: 1px solid var(--color-gray-200);
+  border-top: 1px solid rgba(210, 105, 30, 0.1);
 }
 
 .meta-item {
@@ -86,10 +94,12 @@
 .meta-label {
   font-size: 0.75rem;
   color: var(--color-gray-500);
+  font-weight: 500;
 }
 
 .meta-value {
   font-weight: 500;
+  color: var(--color-gray-800);
 }
 
 .meta-item.total {
@@ -107,8 +117,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px solid var(--color-gray-200);
-  background-color: var(--color-gray-50);
+  border-top: 1px solid rgba(210, 105, 30, 0.1);
+  background: linear-gradient(
+    135deg,
+    var(--color-gray-50) 0%,
+    var(--color-cream) 100%
+  );
 }
 
 .tailor-actions {
@@ -117,33 +131,40 @@
 }
 
 .btn-success {
-  background-color: var(--color-success);
+  background: linear-gradient(135deg, var(--color-success) 0%, #16a34a 100%);
   color: white;
+  border: none;
 }
 
 .btn-success:hover {
-  background-color: #15803d;
+  background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+  transform: translateY(-1px);
 }
 
 .btn-error {
-  background-color: var(--color-error);
+  background: linear-gradient(135deg, var(--color-error) 0%, #dc2626 100%);
   color: white;
+  border: none;
 }
 
 .btn-error:hover {
-  background-color: #b91c1c;
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  transform: translateY(-1px);
 }
 
 .loading-container {
   text-align: center;
   padding: 3rem 0;
+  background: linear-gradient(135deg, white 0%, var(--color-cream) 100%);
+  border-radius: var(--border-radius-lg);
+  border: 1px solid rgba(210, 105, 30, 0.1);
 }
 
 .loading-spinner {
   display: inline-block;
   width: 30px;
   height: 30px;
-  border: 3px solid rgba(79, 70, 229, 0.2);
+  border: 3px solid rgba(210, 105, 30, 0.2);
   border-radius: 50%;
   border-top-color: var(--color-primary);
   animation: spin 1s ease-in-out infinite;
@@ -153,14 +174,16 @@
 .empty-orders {
   text-align: center;
   padding: 3rem 0;
-  background-color: white;
+  background: linear-gradient(135deg, white 0%, var(--color-cream) 100%);
   border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-md);
+  border: 1px solid rgba(210, 105, 30, 0.1);
 }
 
 .empty-icon {
   font-size: 3rem;
   margin-bottom: 1rem;
+  filter: drop-shadow(2px 2px 4px rgba(210, 105, 30, 0.2));
 }
 
 .empty-orders h3 {
@@ -175,6 +198,7 @@
   max-width: 400px;
   margin-left: auto;
   margin-right: auto;
+  line-height: 1.6;
 }
 
 @media (min-width: 768px) {

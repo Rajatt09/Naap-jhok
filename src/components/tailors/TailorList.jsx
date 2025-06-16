@@ -54,7 +54,7 @@ const TailorList = ({ tailors, isLoading }) => {
             </div>
           </div>
 
-          <div className="tailor-card-body">
+          <div className="tailor-card-body" style={{ marginTop: "10px" }}>
             <div className="tailor-services">
               {tailor.servicesOffered.slice(0, 4).map((service, index) => (
                 <span key={index} className="tailor-service-tag">
@@ -89,7 +89,6 @@ const TailorList = ({ tailors, isLoading }) => {
               </span>
             </div>
           </div>
-
           <div className="tailor-card-footer">
             <Link to={`/tailor/${tailor._id}`} className="btn btn-primary">
               View Profile

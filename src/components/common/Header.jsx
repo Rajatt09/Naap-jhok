@@ -29,7 +29,8 @@ const Header = () => {
       <div className="header-container">
         <div className="header-logo">
           <Link to="/" className="logo-link">
-            <h1>Naap-Jhok</h1>
+            <img src="/NaapJhok.jpeg" alt="Naap-Jhok" className="logo-image" />
+            <h1> नाप-Jhok</h1>
           </Link>
         </div>
 
@@ -98,9 +99,9 @@ const Header = () => {
                   </button>
                   <div className="dropdown-menu">
                     <Link to="/profile">Profile</Link>
-                    {isTailor && (
+                    {/* {isTailor && (
                       <Link to="/tailor-profile">Shop Settings</Link>
-                    )}
+                    )} */}
                     <button
                       onClick={logout}
                       className="logout-btn dropdown-item"
