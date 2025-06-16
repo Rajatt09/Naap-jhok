@@ -1,0 +1,1 @@
+const a=()=>new Promise((r,t)=>{if(!navigator.geolocation){t(new Error("Geolocation is not supported by your browser."));return}navigator.geolocation.getCurrentPosition(o=>{const n=o.coords.latitude,e=o.coords.longitude;r({lat:n,lng:e})},o=>{t(o)})});export{a as g};
