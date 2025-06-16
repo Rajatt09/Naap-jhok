@@ -319,8 +319,18 @@
     padding: 1rem;
   }
 
+  .us-tailor-mp {
+    flex-direction: row;
+    /* align-items: center; */
+    justify-content: center;
+  }
+
   .mp-location-info {
     justify-content: center;
+  }
+
+  .us-location-info {
+    display: none;
   }
 
   .mp-controls {

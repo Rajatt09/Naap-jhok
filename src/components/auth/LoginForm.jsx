@@ -108,7 +108,7 @@ const LoginForm = () => {
         </div>
       </form>
 
-      <div className="auth-tips">
+      {/* <div className="auth-tips">
         <h3>Demo Accounts</h3>
         <p>
           User: <code>user@example.com</code> / <code>password123</code>
@@ -116,7 +116,7 @@ const LoginForm = () => {
         <p>
           Tailor: <code>tailor@example.com</code> / <code>password123</code>
         </p>
-      </div>
+      </div> */}
     </div>
   );
 };

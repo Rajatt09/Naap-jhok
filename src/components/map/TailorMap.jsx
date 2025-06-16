@@ -119,9 +119,9 @@ const TailorMap = () => {
 
   return (
     <div className="mp-wrapper">
-      <div className="mp-header">
+      <div className="mp-header us-tailor-mp">
         {/* Current Location Display */}
-        <div className="mp-location-info">
+        <div className="mp-location-info us-location-info">
           <div className="mp-location-icon">📍</div>
           <div className="mp-location-details">
             <span className="mp-location-label">Your Location</span>
