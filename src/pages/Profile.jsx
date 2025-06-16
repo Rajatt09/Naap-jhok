@@ -285,13 +285,17 @@ const Profile = () => {
                 Edit Profile
               </button>
 
-              <button
-                type="button"
-                className="btn btn-secondary"
-                onClick={() => navigate("/set-location")}
-              >
-                Set Shop Location
-              </button>
+              {isTailor ? (
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={() => navigate("/set-location")}
+                >
+                  Set Shop Location
+                </button>
+              ) : (
+                ""
+              )}
             </div>
           )}
         </div>

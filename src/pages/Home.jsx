@@ -6,6 +6,24 @@ import { getNearbyTailors, getAllTailors } from "../api/tailors";
 import { getUserLocation } from "../api/locations";
 import "./Home.css";
 
+export function calculateDistance(lat1, lon1, lat2, lon2) {
+  const toRadians = (degree) => (degree * Math.PI) / 180;
+  const R = 6371; // Earth radius in kilometers
+
+  const dLat = toRadians(lat2 - lat1);
+  const dLon = toRadians(lon2 - lon1);
+
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(toRadians(lat1)) *
+      Math.cos(toRadians(lat2)) *
+      Math.sin(dLon / 2) ** 2;
+
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+  return R * c; // Distance in kilometers
+}
+
 const Home = () => {
   const { isAuthenticated, currentUser } = useAuth();
   const [nearbyTailors, setNearbyTailors] = useState([]);
@@ -16,30 +34,6 @@ const Home = () => {
   const [displayedTailors, setDisplayedTailors] = useState([]);
   const [searchRange, setSearchRange] = useState("");
 
-  // useEffect(() => {
-  //   const fetchTailors = async () => {
-  //     try {
-  //       setIsLoading(true);
-  //       // In a real app, we would get the user's current location
-  //       // For demo, we use a fixed location
-  //       // const lat = 12.9716;
-  //       // const lng = 77.5946;
-  //       // const tailors = await getNearbyTailors(lat, lng)
-  //       // setNearbyTailors(tailors)
-  //       const tailors = await getAllTailors();
-  //       // setNearbyTailors(tailors);
-  //       setAllTailors(tailors);
-  //       setDisplayedTailors(tailors.slice(0, visibleCount));
-  //     } catch (error) {
-  //       console.error("Error fetching tailors:", error);
-  //     } finally {
-  //       setIsLoading(false);
-  //     }
-  //   };
-
-  //   fetchTailors();
-  // }, []);
-
   useEffect(() => {
     const fetchTailors = async () => {
       try {
@@ -47,12 +41,21 @@ const Home = () => {
         let tailors = [];
 
         if (searchRange) {
-          // You can replace these with actual geolocation values if available
-          // const lat = 12.9716;
-          // const lng = 77.5946;
-          const { lat, lng } = await getUserLocation();
-          console.log("User Location (fetched):", lat, lng);
-          // tailors = await getNearbyTailors(lat, lng, searchRange);
+          const { lat: userLat, lng: userLng } = await getUserLocation();
+          console.log("User Location (fetched):", userLat, userLng);
+
+          const all = await getAllTailors();
+
+          tailors = all.filter((tailor) => {
+            if (!tailor.location?.lat || !tailor.location?.lng) return false;
+            const distance = calculateDistance(
+              userLat,
+              userLng,
+              tailor.location.lat,
+              tailor.location.lng
+            );
+            return distance <= Number(searchRange);
+          });
         } else {
           tailors = await getAllTailors();
         }
