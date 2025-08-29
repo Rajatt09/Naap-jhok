@@ -11,7 +11,7 @@ const OrderForm = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const { currentUser } = useAuth();
-  const tailorId = searchParams.get("tailorId");
+  const tailorId = searchParams.get("id");
 
   const [tailor, setTailor] = useState(null);
   const [isLoading, setIsLoading] = useState(true);

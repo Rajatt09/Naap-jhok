@@ -88,8 +88,14 @@ const OrderList = ({
             : "You haven't placed any orders yet. Find a tailor to get started!"}
         </p>
         {!isTailorView && (
-          <Link to="/" className="btn btn-primary">
-            Find Tailors
+          // <Link to="/" className="btn btn-primary">
+          //   Find Tailors
+          // </Link>
+          <Link
+            to={`/order/new?id=6841d3620e3b66bfd0da7978`}
+            className="btn btn-outline"
+          >
+            Place order Now
           </Link>
         )}
       </div>

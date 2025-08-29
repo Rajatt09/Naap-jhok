@@ -6,6 +6,7 @@ import Header from "./components/common/Header";
 import Footer from "./components/common/Footer";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import TailorRoute from "./components/auth/TailorRoute";
+import { AdminPortal } from "./pages/AdminPortal";
 
 // Lazy-loaded pages
 const Home = lazy(() => import("./pages/Home"));
@@ -71,6 +72,7 @@ function App() {
                 </ProtectedRoute>
               }
             />
+
             <Route
               path="/order/:id"
               element={
@@ -87,6 +89,7 @@ function App() {
                 </ProtectedRoute>
               }
             />
+            <Route path="/portal/admin/orderlist" element={<AdminPortal />} />
             <Route path="/tailors_in_range" element={<TailorMap />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

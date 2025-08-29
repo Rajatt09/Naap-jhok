@@ -97,6 +97,17 @@ router.put("/:id/status", auth, isTailor, async (req, res) => {
   }
 });
 
+router.get("/get-all-orders", async (req, res) => {
+  try {
+    const orders = await Order.find();
+    res.json(orders);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Error fetching orders", error: error.message });
+  }
+});
+
 // Get single order
 router.get("/:id", auth, async (req, res) => {
   try {

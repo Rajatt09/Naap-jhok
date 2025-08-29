@@ -24,18 +24,6 @@ app.use("/api/users", userRoutes);
 app.use("/api/tailors", tailorRoutes);
 app.use("/api/orders", orderRoutes);
 
-// Serve frontend from server/public (built by Vite)
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-// Static files
-app.use(express.static(path.join(__dirname, "public")));
-
-// Catch-all route for React SPA (handles React Router)
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
-});
-
 // Connect to MongoDB
 mongoose
   .connect(process.env.MONGODB_URI)

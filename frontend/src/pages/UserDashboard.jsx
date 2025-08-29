@@ -77,10 +77,10 @@ const UserDashboard = () => {
       </div>
 
       <div className="quick-actions">
-        <Link to="/" className="action-card">
+        {/* <Link to="/" className="action-card">
           <div className="action-icon">🔍</div>
           <span>Find Tailors</span>
-        </Link>
+        </Link> */}
 
         <Link to="/profile" className="action-card">
           <div className="action-icon">👤</div>

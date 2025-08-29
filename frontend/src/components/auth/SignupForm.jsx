@@ -62,13 +62,13 @@ const SignupForm = () => {
           >
             I'm a Customer
           </button>
-          <button
+          {/* <button
             type="button"
             className={`user-type-btn ${userType === "tailor" ? "active" : ""}`}
             onClick={() => setUserType("tailor")}
           >
             I'm a Tailor
-          </button>
+          </button> */}
         </div>
 
         <div className="form-group">

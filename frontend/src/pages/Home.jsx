@@ -117,9 +117,9 @@ const Home = () => {
               <Link to="/login" className="btn btn-primary">
                 Get Started
               </Link>
-              <Link to="/signup" className="btn btn-outline">
+              {/* <Link to="/signup" className="btn btn-outline">
                 Join as Tailor
-              </Link>
+              </Link> */}
             </div>
           )}
         </div>
@@ -132,8 +132,10 @@ const Home = () => {
           <div className="features-grid">
             <div className="feature-card">
               <div className="feature-icon">🔍</div>
-              <h3>Find Tailors</h3>
-              <p>Discover skilled tailors within 4km of your location</p>
+              <h3>Tailors Near you</h3>
+              <p>
+                Stitch clothes with skilled tailors within 4km of your location
+              </p>
             </div>
 
             <div className="feature-card">
@@ -156,7 +158,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-
+      {/* 
       {currentUser?.role != "tailor" && (
         <section className="nearby-tailors-section">
           <div className="container">
@@ -164,7 +166,6 @@ const Home = () => {
               <h2>Tailors Near You</h2>
 
               <div className="search-container">
-                {/* Search by name or service */}
                 <input
                   type="text"
                   placeholder="Search by name or service..."
@@ -173,10 +174,8 @@ const Home = () => {
                   className="search-input"
                 />
 
-                {/* Divider */}
                 <div className="search-divider">OR</div>
 
-                {/* Search nearby range */}
                 <label htmlFor="range-select" className="range-label">
                   Search Nearby:
                 </label>
@@ -209,7 +208,7 @@ const Home = () => {
             </div>
           </div>
         </section>
-      )}
+      )} */}
 
       <section className="testimonials-section">
         <div className="container">

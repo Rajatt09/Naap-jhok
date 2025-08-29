@@ -251,7 +251,7 @@ const OrderDetails = () => {
               </div>
             </div>
 
-            {(tailor || order.tailorId) && (
+            {/* {(tailor || order.tailorId) && (
               <div className="order-card">
                 <h2>Tailor Information</h2>
                 <div className="tailor-info">
@@ -293,7 +293,7 @@ const OrderDetails = () => {
                   )}
                 </div>
               </div>
-            )}
+            )} */}
           </div>
 
           <div className="order-side-section">
